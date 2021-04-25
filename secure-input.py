@@ -1,20 +1,22 @@
-import sys
 import getch
 
-def secureInput(prompt=''):
-  password = ''
+def secureInput(prompt='', mask=''):
+  output = ''
+  print(prompt, end='', flush=True)
 
   while True:
-    secure_password = getch.getch()
-    password += secure_password
-    sys.stdout.write(prompt + ''.join(secure_password))
-    print('*', flush=True)
+    keyboard_input = getch.getch()
+    if keyboard_input == '\n':
+      break
 
-    if secure_password == '\r':
-      return ('\n' + password)
+    print(mask, end='', flush=True)
+    output += keyboard_input
+  
+  return ('\n' + output)
 
 
 if __name__ == '__main__':
-    username = str(input("Enter your username: "))
-    password = str(secureInput("Enter your password: "))
-    print(password)
+  username = str(input("Enter your username: "))
+  password = str(secureInput("Enter your password: ", '*'))
+
+  print(password)
