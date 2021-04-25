@@ -8,10 +8,8 @@ def secureInput(prompt='', mask=''):
     keyboard_input = getch.getch()
     if keyboard_input == '\n':
       break
-
     print(mask, end='', flush=True)
     output += keyboard_input
-  
   return ('\n' + output)
 
 
